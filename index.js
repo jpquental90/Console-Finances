@@ -87,53 +87,55 @@ var finances = [
   ['Feb-2017', 671099],
 ];
 
-//The total number of months included in the dataset.
+//1. The total number of months included in the dataset.
 
 let totalMonths = finances.length;
 
 
-//The net total amount of Profit/Losses over the entire period.
+//2. The net total amount of Profit/Losses over the entire period.
 
 let totalProfit = 0;
 
 for (let i = 0; i < finances.length; i++) {
     totalProfit += finances[i][1];
 }
+//The formula above iterates through all the second elements of each sub-array and adds them together
 
 
-//The average of the changes in Profit/Losses over the entire period.
+//3. The average of the changes in Profit/Losses over the entire period.
 
 let totalChange = 0;
 let change = 0;
 
-for (let i = 0; i < totalMonths - 1; i++) {
-  let currentProfit = finances[i][1];
-  let nextProfit = finances[i + 1][1];
-  change = nextProfit - currentProfit;
-  totalChange += change;
+for (let i = 0; i < totalMonths - 1; i++) { //We have to do '-1' to ensure that totalMonths[i + 1] is always a valid index within the bounds of the array
+  let currentProfit = finances[i][1]; //This is each second element in the array
+  let nextProfit = finances[i + 1][1]; //The second element of each next sub-array
+  change = nextProfit - currentProfit; //The profit difference between each month
+  totalChange += change; //The differences between each month added together
 }
 
-let averageChange = totalChange/(totalMonths - 1);
+let averageChange = totalChange/(totalMonths - 1); //The average of the differences
+averageChange = parseFloat(averageChange.toFixed(2)); //Reducing number to only include two decimal numbers
 
 
-//The greatest increase in Profit/Losses (date and amount) over the entire period.
+//4. The greatest increase in Profit/Losses (date and amount) over the entire period.
 
 let maxIncrease = 0;
 let maxIncreaseDate = '';
 
-for (let i = 0; i < totalMonths - 1; i++) {
+for (let i = 0; i < totalMonths - 1; i++) { //A similar type of loop can be used here; the first few steps are the same, but include an 'if' statement
   let currentProfit = finances[i][1];
   let nextProfit = finances[i + 1][1];
   change = nextProfit - currentProfit;
 
   if (change > maxIncrease) {
-    maxIncrease = change;
-    maxIncreaseDate = finances[i + 1][0];
+    maxIncrease = change; //All values are iterated and whenever a higher value appears it is assigned to the variable 'maxIncrease', until there is no other higher value remaining
+    maxIncreaseDate = finances[i + 1][0]; //The date linked to the maximum increase in profit
   }
 }
 
 
-//The greatest decrease in Profit/Losses (date and amount) over the entire period.
+//5. The greatest decrease in Profit/Losses (date and amount) over the entire period.
 
 let maxDecrease = 0;
 let maxDecreaseDate = '';
@@ -143,11 +145,14 @@ for (let i = 0; i < totalMonths - 1; i++) {
   let nextProfit = finances[i + 1][1];
   change = nextProfit - currentProfit;
 
-  if (change < maxDecrease) {
+  if (change < maxDecrease) { //A similar logic to the formula above can be followed here, except we use a '<' sign instead
     maxDecrease = change;
     maxDecreaseDate = finances[i + 1][0];
   }
 }
+
+
+//6. Print the analysis to the console
 
 console.log(
   'Financial Analysis' +
