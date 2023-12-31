@@ -1,6 +1,6 @@
 # Console-Finances
 
-This repository contains my answer to the Module 4 Challenge of the Web Development edX bootcamp. 
+This repository contains my answer to the Module 4 Challenge of the Web Development edX bootcamp: https://jpquental90.github.io/Console-Finances/
 
 ## Description
 
