@@ -87,22 +87,21 @@ var finances = [
   ['Feb-2017', 671099],
 ];
 
+//The total number of months included in the dataset.
+
 let totalMonths = finances.length;
-console.log('The total number of months in the dataset is: ' + totalMonths);
+
+
+//The net total amount of Profit/Losses over the entire period.
 
 let totalProfit = 0;
-
-// function sumNumbers(finances) {
 
 for (let i = 0; i < finances.length; i++) {
     totalProfit += finances[i][1];
 }
-// return totalProfit;
-// }
 
-// totalProfit = sumNumbers(finances);
 
-console.log('The total of Profit/Losses over this time period is: $' + totalProfit)
+//The average of the changes in Profit/Losses over the entire period.
 
 let totalChange = 0;
 let change = 0;
@@ -116,7 +115,8 @@ for (let i = 0; i < totalMonths - 1; i++) {
 
 let averageChange = totalChange/(totalMonths - 1);
 
-console.log("Average Change: " + averageChange);
+
+//The greatest increase in Profit/Losses (date and amount) over the entire period.
 
 let maxIncrease = 0;
 let maxIncreaseDate = '';
@@ -132,7 +132,8 @@ for (let i = 0; i < totalMonths - 1; i++) {
   }
 }
 
-console.log('Greatest Increase in Profits/Losses: ' + maxIncreaseDate + ' ($' + maxIncrease + ')');
+
+//The greatest decrease in Profit/Losses (date and amount) over the entire period.
 
 let maxDecrease = 0;
 let maxDecreaseDate = '';
@@ -148,4 +149,11 @@ for (let i = 0; i < totalMonths - 1; i++) {
   }
 }
 
-console.log('Greatest Decrease in Profits/Losses: ' + maxDecreaseDate + ' ($' + maxDecrease + ')');
+console.log(
+  'Financial Analysis' +
+  '\n----------------' +
+  '\nTotal Months: ' + totalMonths +
+  '\nTotal: $' + totalProfit +
+  '\nAverage Change: ' + averageChange +
+  '\nGreatest Increase in Profits/Losses: ' + maxIncreaseDate + ' ($' + maxIncrease + ')' +
+  '\nGreatest Decrease in Profits/Losses: ' + maxDecreaseDate + ' ($' + maxDecrease + ')');
